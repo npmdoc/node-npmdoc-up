@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"up",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "up",
+    "description": "api documentation for [up (v0.7.0)](https://github.com/Automattic/cloudup-cli#readme) [![npm package](https://img.shields.io/npm/v/npmdoc-up.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-up) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-up.svg)](https://travis-ci.org/npmdoc/node-npmdoc-up)",
     "devDependencies": {
-        "up": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "up": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-up",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-up",
+    "keywords": [
+        "documentation",
+        "up"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_up.js",
+    "name": "npmdoc-up",
+    "nameAlias": "npmdoc_up",
+    "nameOriginal": "npmdoc-up",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-up"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
