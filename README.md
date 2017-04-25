@@ -1,6 +1,6 @@
 # npmdoc-up
 
-#### api documentation for  [up (v0.7.0)](https://github.com/Automattic/cloudup-cli#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-up.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-up) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-up.svg)](https://travis-ci.org/npmdoc/node-npmdoc-up)
+#### basic api documentation for  [up (v0.7.0)](https://github.com/Automattic/cloudup-cli#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-up.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-up) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-up.svg)](https://travis-ci.org/npmdoc/node-npmdoc-up)
 
 #### cloudup command-line executable
 
