@@ -98,6 +98,12 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">up.</span>index</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">up.</span>configPath</span>
 
         </li>
@@ -179,6 +185,43 @@
             function <span class="apidocSignatureSpan">up.console.prototype.</span>update
             <span class="apidocSignatureSpan">()</span>
             </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.up.index">module up.index</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.up.index.client">
+            function <span class="apidocSignatureSpan">up.index.</span>client
+            <span class="apidocSignatureSpan">(opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.up.index.readConfig">
+            function <span class="apidocSignatureSpan">up.index.</span>readConfig
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.up.index.saveConfig">
+            function <span class="apidocSignatureSpan">up.index.</span>saveConfig
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">up.index.</span>configPath</span>
 
         </li>
 
@@ -309,6 +352,8 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
+
+
 
 
 
@@ -614,6 +659,92 @@ Console.prototype.aggregate = function(item){
 * @api private
 ...</pre></li>
     </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.up.index" id="apidoc.module.up.index">module up.index</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.up.index.client" id="apidoc.element.up.index.client">
+        function <span class="apidocSignatureSpan">up.index.</span>client
+        <span class="apidocSignatureSpan">(opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">client = function (opts){
+  opts = opts || {};
+  opts.useragent = 'cloudup-cli/' + pkg.version;
+  if (process.env.UP_API_URL) opts.url = process.env.UP_API_URL;
+  if (process.env.UP_CLOUDUP_URL) opts.cloudupUrl = process.env.UP_CLOUDUP_URL;
+  return new Cloudup(opts);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.up.index.readConfig" id="apidoc.element.up.index.readConfig">
+        function <span class="apidocSignatureSpan">up.index.</span>readConfig
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">readConfig = function (){
+  var json, obj;
+
+  // read
+  try {
+    json = fs.readFileSync(exports.configPath, 'utf8');
+  } catch (err) {
+    console.error('\n  Failed to load configuration.');
+    console.error('  Execute: `up config` to get started!\n');
+    process.exit(1);
+  }
+
+  // parse
+  try {
+    obj = JSON.parse(json);
+  } catch (err) {
+    console.error('\n  Failed to parse ' + exports.configPath + '\n');
+    process.exit(1);
+  }
+
+  // validate
+  if (!(obj.user &amp;&amp; obj.token)) {
+    console.error('\n  Auth token missing.');
+    console.error('  Execute: `up config` to get a token!\n');
+    process.exit(1);
+  }
+
+  return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.up.index.saveConfig" id="apidoc.element.up.index.saveConfig">
+        function <span class="apidocSignatureSpan">up.index.</span>saveConfig
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">saveConfig = function (obj){
+  var json = JSON.stringify(obj, null, 2) + '\n';
+  fs.writeFileSync(exports.configPath, json);
+  // chmod the config file to rw for owner only to prevent other users from
+  // stealing the token
+  fs.chmodSync(exports.configPath, 0600);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
 
 
 </div>
